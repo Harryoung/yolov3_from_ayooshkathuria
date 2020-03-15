@@ -73,7 +73,7 @@ def draw_rectangle(x, frame):
     c2 = tuple(x[3:5].int())
     img = frame
     cls = int(x[-1])
-    label = "{0}".format(classes[cls])
+    label = "{0}  {1:5.2f}".format(classes[cls], float(x[-2]))
     line_width = int((img.shape[0] + img.shape[1]) / 2 / 600)
     cv2.rectangle(img, c1, c2, color, line_width)
     t_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_PLAIN, line_width, line_width)[0]

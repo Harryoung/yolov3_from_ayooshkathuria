@@ -199,7 +199,7 @@ def draw_rectangle(x, results):
     c2 = tuple(x[3:5].int())
     img = results[int(x[0])]
     cls = int(x[-1])
-    label = "{0}".format(classes[cls])
+    label = "{0}  {1:5.2f}".format(classes[cls], float(x[-2]))
     line_width = int((img.shape[0] + img.shape[1]) / 2 / 400)
     font_scale = int((img.shape[0] + img.shape[1]) / 2 / 200) * (c2[1]-c1[1]) / img.shape[1]
     font_line_thickness = font_scale
