@@ -190,14 +190,15 @@ class Darknet(nn.Module):
         # Open the weight file
         fp = open(weight_file, "rb")
 
-        # The first 5 int32 values are header information
+        # The first 3 int32 and 1 int64 values are header information
         # 1. Major version number
         # 2. Minor version number
         # 3. Subversion number
-        # 4,5. Images seen by the network (during training) (i.e. an int64 number?)
-        header = np.fromfile(fp, dtype = np.int32, count = 5)
+        # 4. Images seen by the network (during training)
+        header = np.fromfile(fp, dtype = np.int32, count = 3)
         self.header = torch.from_numpy(header)
-        self.seen = self.header[3]
+        seen = np.fromfile(fp, dtype = np.int64, count = 1)
+        self.seen = torch.from_numpy(seen)
 
         weights = np.fromfile(fp, dtype = np.float32)
 
